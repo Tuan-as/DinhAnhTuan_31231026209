@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DinhAnhTuan_31231026209
 {
-    internal class Section_2
+    internal class Session_2
     {
 
-          public static void Main()
+          public static void Main1()
     {
         Q1();
         Q2();
