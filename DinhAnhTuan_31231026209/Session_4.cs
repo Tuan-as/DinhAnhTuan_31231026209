@@ -9,7 +9,7 @@ namespace DinhAnhTuan_31231026209
 {
     internal class Session_4
     {
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
         Ex_1();
      //  Ex_2();
@@ -57,8 +57,7 @@ namespace DinhAnhTuan_31231026209
             Console.WriteLine($@"Van toc duoc tinh la {vkm}(km/h) hoac {vmi}(miles/h)");
 
         }/// <summary>
-         /// Write a C# Sharp program that takes a character as input and checks if it
-is a vowel, a digit, or any other symbol.
+         /// Write a C# Sharp program that takes a character as input and checks if it is a vowel, a digit, or any other symbol.
          /// </summary>
         public static void Ex_3()
         {
