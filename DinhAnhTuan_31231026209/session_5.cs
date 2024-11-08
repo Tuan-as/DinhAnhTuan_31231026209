@@ -11,14 +11,15 @@ namespace DinhAnhTuan_31231026209
 {
     internal class session_5
     {
-        public static void Main(string[] args)
+        public static void Main5(string[] args)
         {
             //Ex1();
             //Ex2();
             //Ex3();
             //Ex4c1();
             //Ex4c2();
-            Ex5();
+            //Ex5();
+            Ex6();
         }
 
         /// <summary>
@@ -157,16 +158,44 @@ namespace DinhAnhTuan_31231026209
         /// <summary>
         /// Write a C# function to check whether a string is a pangram or not.
         /// </summary>
+
         public static bool cophaipangram(string a)
+        {
+            bool[] kt = new bool[26];
+            int vitri;
+            
+            foreach (char c in a)
+            {
+                if ('a' <= c && c <= 'z')
+                    vitri = (int)c - 'a';
+
+                else if ('A' <= c && c <= 'Z')
+                    vitri = (int)c - 'A';
+                else
+                    continue;
+               kt[vitri] = true;
+
+            }
+            for (int i = 0; i < 26; i++)
+            {
+                if (kt[i] == false)
+                    return false;
+            }
+            return true;
+        }
+        /*public static bool cophaipangram(string a)
         {
             foreach (char c in a)
             {
                 if (
             }    
-        }
+        }*/
         public static void Ex6()
         {
-
+            Console.WriteLine("Hay nhap cau can kiem tra: ");
+            string a = Console.ReadLine();
+            bool kq = cophaipangram(a);
+            Console.WriteLine(kq);
         }
     }
 }
