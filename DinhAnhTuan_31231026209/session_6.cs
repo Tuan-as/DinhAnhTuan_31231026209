@@ -15,7 +15,7 @@ namespace DinhAnhTuan_31231026209
 {
     internal class session_6
     {
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             //Ex1();
             Ex2();
