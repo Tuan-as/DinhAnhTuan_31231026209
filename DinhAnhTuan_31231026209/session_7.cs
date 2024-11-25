@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DinhAnhTuan_31231026209
 {
     internal class session_7
     {
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             //Ex1();
             //Ex2();
@@ -246,28 +250,176 @@ Neu khong muon tim gtnn, nhan phim bat ki.
         }
 
         /// <summary>
-        /// 
+        /// Create a jagged array and initialize it using the following values for its rows and columns;
         /// </summary>
         public static void Ex1jagged()
         {
 
         }
+        /// <summary>
+        /// 1. Print the biggest number of each row and the largest number of the whole array.
+        /// 2. Sort values ascending of each row.
+        /// 3. Print items of the array that are prime.
+        /// 4. Search and print all positions of a number (enter from the user).
+        /// </summary>
         public static void Ex2jagged()
         {
             Random random = new Random();
-            Console.WriteLine("Nhap so hang cua mang jagged: "); int hang = int.Parse(Console.ReadLine());
+            Console.Write("Nhap so hang cua mang jagged: "); int hang = int.Parse(Console.ReadLine());
             int[][] a = new int[hang][];
-            for (int i = 0;i < a.Length;i++)
+            for (int i = 0; i < a.Length; i++)
             {
-                Console.WriteLine($"Nhap so cot cua hang {i}: ");
+                Console.Write($"Nhap so cot cua hang {i}: ");
                 int cot = int.Parse(Console.ReadLine());
-                for (int j = 0;j < cot;j++) 
-                { 
+                a[i] = new int[cot];
+                for (int j = 0; j < cot; j++)
+                {
                     a[i][j] = random.Next(100);
                 }
             }
+            inmangjagged(a);
+            maxmoidong(a); maxtoanbo(a);
+            sapxepcacdongtangdan(a);
+            inmangjagged(a);
+            invitrixuathien(a);
+        }
+        public static void maxtoanbo(int[][] a)
+        {
+            int max = a[0][0];
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                    if (a[i][j] > max)
+                    { max = a[i][j]; }
+                }
+            }
+            Console.WriteLine($"Gia tri lon nhat cua ma tran lom chom la: {max}.");
+        }
+        public static void maxmoidong(int[][] a)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                int max = a[i][0];
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                    if (a[i][j] > max)
+                    { max = a[i][j]; }
+                }
+                Console.WriteLine($"Gia tri lon nhat cua dong {i} la: {max}.");
+            }
+        }
+        public static void sapxepcacdongtangdan(int[][] a)
+        {
+            for (int z = 0; z < a.Length; z++)
+            {
+                for (int i = 0; i < a[z].Length; i++)
+                {
+                    int min = a[z][i], index = i;
+                    for (int j = i + 1; j < a[z].Length; j++)
+                    {
+                        if (a[z][j] < min)
+                        {
+                            min = a[z][j];
+                            index = j;
+                        }
+                    }
+                    int b = a[z][index]; a[z][index] = a[z][i]; a[z][i] = b;
+                }
+            }
+        }
+        public static void inmangjagged(int[][] a)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                    Console.Write($"{a[i][j]}   ");
+                }
+                Console.WriteLine();
+            }
 
-
+        }
+        public static bool Primeornot(int a)
+        {
+            int uoc = 0;
+            for (int i = 1; i <= a; i++)
+                if (a % i == 0)
+                    uoc++;
+            if (uoc == 2)
+                return true;
+            else return false;
+        }
+        public static void insonguyentomoidong(int[][] a)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write($"Cac so nguyen to o dong {i} la: ");
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                    if (Primeornot(a[i][j]) == true)
+                        Console.Write($"{a[i][j]}   ");
+                }
+                Console.WriteLine();
+            }
+        }
+        public static void invitrixuathien(int[][] a)
+        {
+            Console.Write("Nhap so ma ban muon tim: ");
+            int b = int.Parse(Console.ReadLine());
+            Console.Write("So da chon xuat hien o cac vi tri: ");
+            int kiemtra = -1;
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                    if (a[i][j] == b)
+                    {
+                        Console.Write($"[{i}][{j}]       ");
+                        kiemtra = i;
+                    }
+                }
+            }
+            if (kiemtra == -1)
+            {
+                Console.WriteLine("So ban chon khong xuat hien trong ma tran!");
+            }
+        }
+        /// <summary>
+        /// 1. Initialize an array with pre-assigned values or values enteredfrom the keyboard.
+        /// 2. Print a list of all members.
+        /// 3. Print the information on a member when the ID is known.
+        /// 4. Print the member with the highest number of completed tasks.
+        /// </summary>
+        public static void Ex3_jagged()
+        {
+            object[][][] a = new object[3][][];
+            a[0] = new object[5][];
+            a[1] = new object[3][];
+            a[2] = new object[6][];
+            int k = 1;
+            for (int i = 0;i < a.Length;i++)
+                for (int j = 0;j < a[i].Length;j++)
+                {
+                    a[i][j] = new object[3];
+                    a[i][j][0] = k;
+                    k++;
+                    Console.Write($"Nhan vien nhom {i+1} thu {j+1} co ten la: ");
+                    a[i][j][1] = Console.ReadLine();
+                    Console.Write($"So cong viec ma {a[i][j][1]} da hoan thanh: ");
+                    a[i][j][2] = int.Parse( Console.ReadLine() );
+                }    
+        }
+        public static void intenthanhvien(object[][][] a)
+        {
+            Console.WriteLine("Danh sach thanh vien");
+            for (int i = 0; i < a.Length; i++) 
+            { 
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                    Console.WriteLine($"{a[i][j][0]}. {a[i][j][1]}");
+                }    
+            }
         }
     }
 }
